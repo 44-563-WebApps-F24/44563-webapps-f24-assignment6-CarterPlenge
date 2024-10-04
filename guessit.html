@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+ <head>
+    <title>
+        Guess it!
+    </title>
+ </head>
+<body>
+
+<h2>Guess the color - Carter Plenge</h2>
+
+<form>
+    <label for="secret_color">Guess the color:</label>
+    <input type="password" id="secret_color" value="Red"> <br>
+
+    <label for="guess_color">Enter a guess:</label>
+    <input type="text" id="guess_color"> <br>
+
+    <input type="button" value="Check the color" onclick="processColor()">
+</form>
+
+
+<p id="result">Attempts: 0 | Wrong guesses: 0</p>
+
+<script> 
+
+    let attempts = 0;
+    let wrong = 0;
+
+function processColor(){
+    console.log("Getting form values")
+    const secretColor = document.getElementById("secret_color").value
+    const guessedColor = document.getElementById("guess_color").value
+    
+    attempts++;
+
+    if (secretColor === guessedColor) {
+      alert("You got it!");
+    } else {
+      wrong++;
+      alert("That was not it.");
+    }
+
+    document.getElementById("result").innerHTML = `Attempts: ${attempts} | Wrong guesses: ${wrong}`;
+}
+</script>
+
+</body>
+</html> 
