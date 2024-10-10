@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Carter orders a lunch</title>
+</head>
+<body>
+
+<h2>Carter orders a lunch</h2>
+
+<form>
+    <label for="form1_drink">Drink</label>
+    <input type="checkbox" id="form1_drink" value="drink"><br>
+
+    <label for="form1_side">Side</label>
+    <input type="checkbox" id="form1_side" value="side"><br>
+
+    <label for="form1_in">Eat in</label>
+    <input type="checkbox" id="form1_in" value="in"><br><br>
+
+    <input type="button" onclick="startLunch()" value="Start a lunch order">
+</form>
+
+<p id="lunch_result">Your lunch order will be displayed here.</p>
+
+<form>
+    <label for="form1_age">What is your age </label>
+    <input type="number" id="form1_age" name="form1_age" min=10 max=50 step=2 value=30><br>
+
+    <label for="form1_nick">What is your nickname </label>
+    <input type="text" id="form1_nick" name="form1_nick" autofocus><br>
+
+    <input type="button" onclick="resolveForm()" value="Get values from form">
+</form>
+
+<p id="result">This text will be replaced</p>
+
+<script> 
+let my_lunch = {};
+function startLunch() {
+    my_lunch = {};
+
+    my_lunch.drink = document.getElementById("form1_drink").checked;
+    my_lunch.side = document.getElementById("form1_side").checked;
+    my_lunch.in = document.getElementById("form1_in").checked;
+
+    document.getElementById("lunch_result").innerHTML = "Lunch Order: " + JSON.stringify(my_lunch);
+}
+
+function resolveForm() {
+    console.log("Getting form values")
+    age = document.getElementById("form1_age").value;
+    nick = document.getElementById("form1_nick").value;
+    confirmed = confirm("Are these the values? " + age + " and " + nick);
+    
+    out = document.getElementById("result");
+    if (confirmed) {
+        out.innerHTML = "Values were confirmed";
+    } else {
+        out.innerHTML = "Values were not confirmed";
+    }
+}
+</script>
+
+</body>
+</html>
