@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Carter figures out</title>
+</head>
+<body>
+
+<h2>Carter figures out</h2>
+
+<form>
+    <label for="first_value">Enter a number: </label>
+    <input type="number" id="first_value" name="first_value" value="2"> <br>
+
+    <label for="second_value">Enter a number: </label>
+    <input type="number" id="second_value" name="second_value" value="12"> <br>
+
+    <input type="button" onclick="powerSum()" value="Compute">
+</form>
+
+<p id="result">The result will be displayed here.</p>
+
+<script> 
+function powerSum() {
+    let first = parseInt(document.getElementById("first_value").value);
+    let second = parseInt(document.getElementById("second_value").value);
+
+    let sum = 0;
+
+    // Loop to compute sum of powers
+    for (let i = 0; i < first; i++) {
+        sum += second ** i;  // Add second^i to sum
+    }
+
+    // Update the result paragraph
+    document.getElementById("result").innerHTML = `Sum of ${first} powers with base ${second} is ${sum}.`;
+}
+</script>
+
+</body>
+</html>
