@@ -12,29 +12,53 @@
     <input type="number" id="first_value" name="first_value" value="2"> <br>
 
     <label for="second_value">Enter a number: </label>
-    <input type="number" id="second_value" name="second_value" value="12"> <br>
+    <input type="number" id="second_value" name="second_value" value="12"> <br><br>
 
-    <input type="button" onclick="powerSum()" value="Compute">
+    <input type="radio" id="max" name="operation" value="max" onclick="processRadio()">
+    <label for="max">Max</label><br>
+
+    <input type="radio" id="min" name="operation" value="min" onclick="processRadio()">
+    <label for="min">Min</label><br>
+
+    <input type="radio" id="avg" name="operation" value="avg" onclick="processRadio()">
+    <label for="avg">Average</label><br>
+
+    <input type="radio" id="geo" name="operation" value="geo" onclick="processRadio()">
+    <label for="geo">Geometric</label><br>
 </form>
 
 <p id="result">The result will be displayed here.</p>
 
 <script> 
-function powerSum() {
-    let first = parseInt(document.getElementById("first_value").value);
-    let second = parseInt(document.getElementById("second_value").value);
+function processRadio() {
+    let first = parseFloat(document.getElementById("first_value").value);
+    let second = parseFloat(document.getElementById("second_value").value);
 
-    let sum = 0;
+    let selectedOperation = document.querySelector('input[name="operation"]:checked').value;
 
-    // Loop to compute sum of powers
-    for (let i = 0; i < first; i++) {
-        sum += second ** i;  // Add second^i to sum
+    let result;
+    let operationPerformed;
+
+    if (selectedOperation === "max") {
+        result = Math.max(first, second);
+        operationPerformed = "maximum";
+
+    } else if (selectedOperation === "min") {
+        result = Math.min(first, second);
+        operationPerformed = "minimum";
+
+    } else if (selectedOperation === "avg") {
+        result = (first + second) / 2;
+        operationPerformed = "average";
+
+    } else if (selectedOperation === "geo") {
+        result = (first * second) ** 0.5;
+        operationPerformed = "geometric mean";
     }
 
-    // Update the result paragraph
-    document.getElementById("result").innerHTML = `Sum of ${first} powers with base ${second} is ${sum}.`;
+    document.getElementById("result").innerHTML = `Computed ${operationPerformed} with values ${first} and ${second} with result ${result}.`;
 }
 </script>
-
 </body>
 </html>
+
